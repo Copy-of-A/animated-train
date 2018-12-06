@@ -32,12 +32,14 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.dGV_Cities = new System.Windows.Forms.DataGridView();
             this.btnAddFile = new System.Windows.Forms.Button();
-            this.textBoxCity = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.tBCity = new System.Windows.Forms.TextBox();
+            this.btnAddCity = new System.Windows.Forms.Button();
             this.btnRandom = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.lB_Way = new System.Windows.Forms.ListBox();
             this.dGV_Result = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Cities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Result)).BeginInit();
             this.SuspendLayout();
@@ -78,22 +80,24 @@
             this.btnAddFile.TabIndex = 3;
             this.btnAddFile.Text = "Добавить города из файла";
             this.btnAddFile.UseVisualStyleBackColor = true;
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
             // 
-            // textBoxCity
+            // tBCity
             // 
-            this.textBoxCity.Location = new System.Drawing.Point(770, 65);
-            this.textBoxCity.Name = "textBoxCity";
-            this.textBoxCity.Size = new System.Drawing.Size(228, 20);
-            this.textBoxCity.TabIndex = 4;
+            this.tBCity.Location = new System.Drawing.Point(770, 65);
+            this.tBCity.Name = "tBCity";
+            this.tBCity.Size = new System.Drawing.Size(228, 20);
+            this.tBCity.TabIndex = 4;
             // 
-            // btnAdd
+            // btnAddCity
             // 
-            this.btnAdd.Location = new System.Drawing.Point(770, 91);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(115, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Добавить город";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAddCity.Location = new System.Drawing.Point(770, 91);
+            this.btnAddCity.Name = "btnAddCity";
+            this.btnAddCity.Size = new System.Drawing.Size(115, 23);
+            this.btnAddCity.TabIndex = 5;
+            this.btnAddCity.Text = "Добавить город";
+            this.btnAddCity.UseVisualStyleBackColor = true;
+            this.btnAddCity.Click += new System.EventHandler(this.btnAddCity_Click);
             // 
             // btnRandom
             // 
@@ -103,6 +107,7 @@
             this.btnRandom.TabIndex = 6;
             this.btnRandom.Text = "Заполнить случайными расстояниями";
             this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // btnClear
             // 
@@ -112,6 +117,7 @@
             this.btnClear.TabIndex = 7;
             this.btnClear.Text = "Очистить";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // lB_Way
             // 
@@ -124,10 +130,25 @@
             // dGV_Result
             // 
             this.dGV_Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_Result.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
             this.dGV_Result.Location = new System.Drawing.Point(559, 322);
             this.dGV_Result.Name = "dGV_Result";
             this.dGV_Result.Size = new System.Drawing.Size(190, 150);
             this.dGV_Result.TabIndex = 9;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 70;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 70;
             // 
             // Form1
             // 
@@ -138,14 +159,15 @@
             this.Controls.Add(this.lB_Way);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnRandom);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.textBoxCity);
+            this.Controls.Add(this.btnAddCity);
+            this.Controls.Add(this.tBCity);
             this.Controls.Add(this.btnAddFile);
             this.Controls.Add(this.dGV_Cities);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAbout);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Cities)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Result)).EndInit();
             this.ResumeLayout(false);
@@ -159,12 +181,14 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridView dGV_Cities;
         private System.Windows.Forms.Button btnAddFile;
-        private System.Windows.Forms.TextBox textBoxCity;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox tBCity;
+        private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ListBox lB_Way;
         private System.Windows.Forms.DataGridView dGV_Result;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 
