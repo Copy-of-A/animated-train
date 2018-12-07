@@ -40,6 +40,7 @@
             this.dGV_Result = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRun = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Cities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Result)).BeginInit();
             this.SuspendLayout();
@@ -150,11 +151,22 @@
             this.Column2.Name = "Column2";
             this.Column2.Width = 70;
             // 
+            // btnRun
+            // 
+            this.btnRun.Location = new System.Drawing.Point(853, 219);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.TabIndex = 10;
+            this.btnRun.Text = "Найти";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 484);
+            this.Controls.Add(this.btnRun);
             this.Controls.Add(this.dGV_Result);
             this.Controls.Add(this.lB_Way);
             this.Controls.Add(this.btnClear);
@@ -189,6 +201,7 @@
         private System.Windows.Forms.DataGridView dGV_Result;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.Button btnRun;
     }
 }
 

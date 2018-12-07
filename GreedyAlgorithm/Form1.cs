@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace GreedyAlgorithm
 {
@@ -15,6 +16,7 @@ namespace GreedyAlgorithm
     {
         //количество городов
         int n = 0;
+        Algorithms algs = new Algorithms();
         public Form1()
         {
             InitializeComponent();
@@ -42,7 +44,12 @@ namespace GreedyAlgorithm
             btnAddFile.Enabled = true;
             btnAddCity.Enabled = true;
             btnRandom.Enabled = false;
+            btnRun.Enabled = false;
             //panel1.Visible = false;
+            dGV_Result.Rows.Clear();
+            dGV_Result.Columns.Clear();
+            dGV_Result.ColumnCount = 1;
+            dGV_Result.RowCount = 1;
         }
 
         //добавление городов по 1 вручную
@@ -111,6 +118,7 @@ namespace GreedyAlgorithm
             dGV_Result.ColumnCount = 1;
             dGV_Result.RowCount = 1;
             btnRandom.Enabled = false;
+            btnRun.Enabled = false;
             //panel1.Visible = false;
             dGV_Result.Rows.Add();
             dGV_Result.Columns.Add("newColumnName", "");
@@ -138,6 +146,41 @@ namespace GreedyAlgorithm
                     }
                 };
             //panel1.Visible = true;
+            btnRun.Enabled = true;
+        }
+
+        //полный перебор
+        private void CallFullFunc()
+        {
+            List<int> way = new List<int>();
+            string cities2 = "";
+            int min2 = 0;
+            int[,] TR = new int[dGV_Cities.ColumnCount - 1, dGV_Cities.ColumnCount - 1];
+            for (int i = 0; i < dGV_Cities.ColumnCount - 1; i++)
+                for (int j = 0; j < dGV_Cities.ColumnCount - 1; j++)
+                    TR[i, j] = int.Parse(dGV_Cities.Rows[i].Cells[j].Value.ToString());
+            DateTime FirstTime2 = DateTime.Now;
+            way = algs.FindMinWayExhaustiveSearch(TR, ref min2);
+            DateTime SecondTime2 = DateTime.Now;
+            for (int i = 0; i < n; i++)
+            {
+                cities2 = cities2 + dGV_Cities.Rows[way[i] - 1].HeaderCell.Value.ToString() + Environment.NewLine;
+            }
+            lB_Way.Invoke(new Action(() => { lB_Way.Text += Environment.NewLine + "Полный перебор:" + 
+                Environment.NewLine + "Минимальный Путь:" + Environment.NewLine + cities2 + "--------------------"; }));
+            string time2 = Convert.ToString(SecondTime2.Subtract(FirstTime2).TotalSeconds);
+            dGV_Result.Rows[0].Cells[0].Value = time2;
+            dGV_Result.Rows[1].Cells[0].Value = Convert.ToString(min2);
+
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            //Thread thread1 = new Thread(CallFunAntAlg);
+            Thread thread2 = new Thread(CallFullFunc);
+            //thread1.Start();
+            thread2.Start();
+            btnRun.Enabled = false;
         }
     }
 }
