@@ -36,11 +36,11 @@
             this.btnAddCity = new System.Windows.Forms.Button();
             this.btnRandom = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.lB_Way = new System.Windows.Forms.ListBox();
             this.dGV_Result = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRun = new System.Windows.Forms.Button();
+            this.lB_Way = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Cities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Result)).BeginInit();
             this.SuspendLayout();
@@ -67,9 +67,13 @@
             // 
             // dGV_Cities
             // 
+            this.dGV_Cities.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dGV_Cities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGV_Cities.Location = new System.Drawing.Point(12, 12);
             this.dGV_Cities.Name = "dGV_Cities";
+            this.dGV_Cities.RowHeadersWidth = 100;
             this.dGV_Cities.Size = new System.Drawing.Size(524, 460);
             this.dGV_Cities.TabIndex = 2;
             // 
@@ -120,22 +124,17 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // lB_Way
-            // 
-            this.lB_Way.FormattingEnabled = true;
-            this.lB_Way.Location = new System.Drawing.Point(559, 12);
-            this.lB_Way.Name = "lB_Way";
-            this.lB_Way.Size = new System.Drawing.Size(190, 290);
-            this.lB_Way.TabIndex = 8;
-            // 
             // dGV_Result
             // 
+            this.dGV_Result.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dGV_Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGV_Result.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
             this.dGV_Result.Location = new System.Drawing.Point(559, 322);
             this.dGV_Result.Name = "dGV_Result";
+            this.dGV_Result.RowHeadersWidth = 60;
             this.dGV_Result.Size = new System.Drawing.Size(190, 150);
             this.dGV_Result.TabIndex = 9;
             // 
@@ -161,14 +160,25 @@
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
+            // lB_Way
+            // 
+            this.lB_Way.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lB_Way.Location = new System.Drawing.Point(559, 12);
+            this.lB_Way.Multiline = true;
+            this.lB_Way.Name = "lB_Way";
+            this.lB_Way.ReadOnly = true;
+            this.lB_Way.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.lB_Way.Size = new System.Drawing.Size(190, 288);
+            this.lB_Way.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 484);
+            this.Controls.Add(this.lB_Way);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.dGV_Result);
-            this.Controls.Add(this.lB_Way);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.btnAddCity);
@@ -197,11 +207,11 @@
         private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.ListBox lB_Way;
         private System.Windows.Forms.DataGridView dGV_Result;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.TextBox lB_Way;
     }
 }
 

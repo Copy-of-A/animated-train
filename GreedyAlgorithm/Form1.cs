@@ -40,7 +40,7 @@ namespace GreedyAlgorithm
             dGV_Cities.ColumnCount = 1;
             dGV_Cities.RowCount = 1;
             n = 0;
-            lB_Way.Items.Clear();
+            lB_Way.Clear();
             btnAddFile.Enabled = true;
             btnAddCity.Enabled = true;
             btnRandom.Enabled = false;
@@ -149,6 +149,28 @@ namespace GreedyAlgorithm
             btnRun.Enabled = true;
         }
 
+        private void CallGreedyFunc()
+        {
+            List<int> way = new List<int>();
+            string cities1 = "";
+            int min1 = 0;
+            int[,] TR = new int[dGV_Cities.ColumnCount - 1, dGV_Cities.ColumnCount - 1];
+            for (int i = 0; i < dGV_Cities.ColumnCount - 1; i++)
+                for (int j = 0; j < dGV_Cities.ColumnCount - 1; j++)
+                    TR[i, j] = int.Parse(dGV_Cities.Rows[i].Cells[j].Value.ToString());
+            DateTime FirstTime1 = DateTime.Now;
+            way = algs.FindWayGreedyAlgorithm(TR, ref min1);
+            DateTime SecondTime1 = DateTime.Now;
+            for (int i = 0; i < n; i++)
+            {
+                cities1 = cities1 + dGV_Cities.Rows[way[i]].HeaderCell.Value.ToString() + Environment.NewLine;
+            }
+            lB_Way.Invoke(new Action(() => { lB_Way.Text += Environment.NewLine + "Жадный алгоритм:" +  Environment.NewLine + cities1 + "--------------------"; }));
+            string time1 = Convert.ToString(SecondTime1.Subtract(FirstTime1).TotalMilliseconds);
+            dGV_Result.Rows[0].Cells[1].Value = time1;
+            dGV_Result.Rows[1].Cells[1].Value = Convert.ToString(min1);
+        }
+
         //полный перебор
         private void CallFullFunc()
         {
@@ -167,8 +189,8 @@ namespace GreedyAlgorithm
                 cities2 = cities2 + dGV_Cities.Rows[way[i] - 1].HeaderCell.Value.ToString() + Environment.NewLine;
             }
             lB_Way.Invoke(new Action(() => { lB_Way.Text += Environment.NewLine + "Полный перебор:" + 
-                Environment.NewLine + "Минимальный Путь:" + Environment.NewLine + cities2 + "--------------------"; }));
-            string time2 = Convert.ToString(SecondTime2.Subtract(FirstTime2).TotalSeconds);
+                Environment.NewLine + cities2 + "--------------------"; }));
+            string time2 = Convert.ToString(SecondTime2.Subtract(FirstTime2).TotalMilliseconds);
             dGV_Result.Rows[0].Cells[0].Value = time2;
             dGV_Result.Rows[1].Cells[0].Value = Convert.ToString(min2);
 
@@ -176,9 +198,11 @@ namespace GreedyAlgorithm
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            //Thread thread1 = new Thread(CallFunAntAlg);
+            btnRandom.Select();
+            lB_Way.Clear();
+            Thread thread1 = new Thread(CallGreedyFunc);
             Thread thread2 = new Thread(CallFullFunc);
-            //thread1.Start();
+            thread1.Start();
             thread2.Start();
             btnRun.Enabled = false;
         }
